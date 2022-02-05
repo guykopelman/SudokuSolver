@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SudokuSolver
 {
-    class SudokuSolver
+    public static class SudokuSolver
     {
         public static Sudoku Solve(Sudoku sudoku)
         // The Function is get the sudoku and return the solve of him if there is
         {
-            AssertValidation(sudoku,sudoku.GetSize());
+            AssertValidation(sudoku, sudoku.GetSize());
 
             Sudoku solution = (Sudoku)sudoku.Clone();
             List<OptionalSudokuCell> optionalCells = GenerateOptionalCells(solution);
@@ -50,11 +50,10 @@ namespace SudokuSolver
             }
             if (optionIndex == -1)
             {
-                 throw new UnSolveable(sudoku);
+                throw new UnSolveable(sudoku);
                 // throw new Exception ("UnSolveable sudoku ") ;
-             }
-            if (IsSolved(sudoku)) { return solution; }
-            throw new UnSolveable(sudoku);
+            }
+            return solution;
         }
 
 
@@ -201,13 +200,15 @@ namespace SudokuSolver
                         optionalValues.Add(value);
                     }
                 }
+                if (optionalValues.Count == 0)
+                    throw new UnSolveable();
                 options.Add(new OptionalSudokuCell(currentLocation, optionalValues));
             }
             return options;
         }
 
         private static void AssertValidation(Sudoku sudoku, int size)
-       {
+        {
             for (int i = 0; i < size; i++)
             {
                 IsRowValid(sudoku, size, i);
@@ -215,24 +216,24 @@ namespace SudokuSolver
                 IsBoxValid(sudoku, size, i);
             }
         }
-        private static bool  IsRowValid(Sudoku sudoku, int size, int row)
+        private static bool IsRowValid(Sudoku sudoku, int size, int row)
         {
             int[] counter = new int[size];
-            int [,] board = sudoku.GetClonedMatrix();
+            int[,] board = sudoku.GetClonedMatrix();
             for (int i = 0; i < size; i++)
-                if (board[row, i] != 0 && ++counter[board[row, i]-1] > 1)
-                    throw new Exception ("contain invalid sequence in row " + row);
+                if (board[row, i] != 0 && ++counter[board[row, i] - 1] > 1)
+                    throw new Exception("contain invalid sequence in row " + row);
             return true;
         }
 
 
-        private static bool IsColValid(Sudoku sudoku, int size,int col)
+        private static bool IsColValid(Sudoku sudoku, int size, int col)
         {
             int[] counter = new int[size];
-            int [,] board = sudoku.GetClonedMatrix();
+            int[,] board = sudoku.GetClonedMatrix();
             for (int i = 0; i < size; i++)
-                if (board[i,col] != 0 && ++counter[board[i, col]-1] > 1)
-                    throw new Exception ("contain invalid sequence in col " + col);
+                if (board[i, col] != 0 && ++counter[board[i, col] - 1] > 1)
+                    throw new Exception("contain invalid sequence in col " + col);
             return true;
         }
 
@@ -240,38 +241,15 @@ namespace SudokuSolver
         private static bool IsBoxValid(Sudoku sudoku, int size, int box)
         {
             int boxSize = sudoku.GetBoxSize();
-            int [,] board = sudoku.GetClonedMatrix();
+            int[,] board = sudoku.GetClonedMatrix();
             Location start = sudoku.BoxToLocation(box);
             int startrow = start.GetRow();
             int startcol = start.GetCol();
-            int[] counrter = new int[size];
+            int[] counter = new int[size];
             for (int i = startrow; i < startrow + boxSize; i++)
                 for (int j = startcol; j < startcol + boxSize; j++)
-                    if (board[i,j] != 0 && ++counrter[board[i, j]-1] > 1)
-                        throw new Exception ("contain invalid sequence in box " + box);
-            return true;
-        }
-        static bool IsSolved(Sudoku sudoku)
-        {
-            int size = sudoku.GetSize();
-            for (int value = 1; value <= size; value++)
-            {
-                for (int i = 0; i < size; i++)
-                {
-                    if (!sudoku.DoesExistInRow(value, i))
-                    {
-                        return false;
-                    }
-                    if (!sudoku.DoesExistInCol(value, i))
-                    {
-                        return false;
-                    }
-                    if (!sudoku.DoesExistInBox(value, i))
-                    {
-                        return false;
-                    }
-                }
-            }
+                    if (board[i, j] != 0 && ++counter[board[i, j] - 1] > 1)
+                        throw new Exception("contain invalid sequence in box " + box);
             return true;
         }
     }

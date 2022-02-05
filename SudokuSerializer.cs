@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SudokuSolver
 {
-    class SudokuSerializer
+     public class SudokuSerializer
     {
 
         public static string SudokuToString(Sudoku sudoku)

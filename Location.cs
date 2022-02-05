@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SudokuSolver
 {
-    class Location
+    public class Location
     {
         private int row, col;
 

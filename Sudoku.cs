@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SudokuSolver
 {
-    class Sudoku : ICloneable, ISearchable
+    public class Sudoku : ICloneable, ISearchable
     {
         public static int EMPTY_VALUE = 0;
 

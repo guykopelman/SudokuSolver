@@ -6,3 +6,4 @@ sodokuSolver1.sln
 .vs/sodokuSolver1/DesignTimeBuild/
 *.txt
 .vs/SudokuSolver/v16/.suo
+TestResults/
