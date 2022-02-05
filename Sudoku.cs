@@ -47,7 +47,6 @@ namespace SudokuSolver
             {
                 return this.matrix[location.GetRow(), location.GetCol()];
             }
-            // TODO: add correct exception type
             throw new Exception();
         }
 
@@ -124,7 +123,7 @@ namespace SudokuSolver
             return locations;
         }
 
-        private Location BoxToLocation(int box)
+        public Location BoxToLocation(int box)
         {
             int size = GetBoxSize();
             int firstRow = (box / size) * size;

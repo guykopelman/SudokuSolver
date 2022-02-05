@@ -55,6 +55,9 @@ namespace SudokuSolver
         public static bool IsStringSizeValid(string str)
         {
             double sqrt = Math.Sqrt(str.Length);
+            if (str.Length == 0){
+                return false;
+            }
             return (int)sqrt == sqrt;
         }
 

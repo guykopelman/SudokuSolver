@@ -8,29 +8,7 @@ namespace SudokuSolver
 {
     class Program
     {
-        static bool IsSolved(Sudoku sudoku)
-        {
-            int size = sudoku.GetSize();
-            for (int value = 1; value <= size; value++)
-            {
-                for (int i = 0; i < size; i++)
-                {
-                    if (!sudoku.DoesExistInRow(value, i))
-                    {
-                        return false;
-                    }
-                    if (!sudoku.DoesExistInCol(value, i))
-                    {
-                        return false;
-                    }
-                    if (!sudoku.DoesExistInBox(value, i))
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
+        
         public static bool HandleMenuDisplay()
         {
             Console.WriteLine("Choose input type:");
