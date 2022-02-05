@@ -31,8 +31,7 @@ namespace SudokuSolver
             }
             return true;
         }
-        
-        private static bool HandleMenuDisplay()
+        public static bool HandleMenuDisplay()
         {
             Console.WriteLine("Choose input type:");
             Console.WriteLine("c - from console");
