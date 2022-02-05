@@ -11,6 +11,7 @@ namespace SudokuSolver
     class SudokuIO
     {
         public static Sudoku ReadSudokuFromFile()
+        // read from file and return has sudoku
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.DefaultExt = ".txt";
@@ -22,6 +23,7 @@ namespace SudokuSolver
         }
 
         public static Sudoku ReadSudokuFromConsole()
+        // read from console
         {
             Console.Write("sudoku string=");
             string str = Console.ReadLine();
@@ -29,6 +31,7 @@ namespace SudokuSolver
         }
 
         public static void WriteSudokuToFile(Sudoku sudoku)
+        // write the solved sudoku into file
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.DefaultExt = ".txt";
@@ -39,6 +42,7 @@ namespace SudokuSolver
         }
 
         public static void WriteSudokuToConsole(Sudoku sudoku)
+        // write to console the solved sudoku
         {
             Console.WriteLine(sudoku);
         }

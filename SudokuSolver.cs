@@ -208,6 +208,7 @@ namespace SudokuSolver
         }
 
         private static void AssertValidation(Sudoku sudoku, int size)
+        // check validate of the sudoku
         {
             for (int i = 0; i < size; i++)
             {
@@ -217,6 +218,7 @@ namespace SudokuSolver
             }
         }
         private static bool IsRowValid(Sudoku sudoku, int size, int row)
+        // return if row is valid
         {
             int[] counter = new int[size];
             int[,] board = sudoku.GetClonedMatrix();
@@ -228,6 +230,7 @@ namespace SudokuSolver
 
 
         private static bool IsColValid(Sudoku sudoku, int size, int col)
+        // return if col is valid
         {
             int[] counter = new int[size];
             int[,] board = sudoku.GetClonedMatrix();
@@ -239,6 +242,7 @@ namespace SudokuSolver
 
 
         private static bool IsBoxValid(Sudoku sudoku, int size, int box)
+        // return if box is valid
         {
             int boxSize = sudoku.GetBoxSize();
             int[,] board = sudoku.GetClonedMatrix();

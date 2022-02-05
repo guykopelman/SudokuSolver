@@ -26,6 +26,7 @@ namespace SudokuSolver
         }
 
         public static Sudoku StringToSudoku(string str)
+        // the function get string and return Sudoku with the values of the string or throw exception
         {
             int size = (int)Math.Sqrt(str.Length);
             if(!IsStringSizeValid(str)){
@@ -48,11 +49,13 @@ namespace SudokuSolver
         }
 
         private static int CharToValue(char ch)
+        // cast char char into int 
         {
             return ch - '0';
         }
 
         public static bool IsStringSizeValid(string str)
+        // return if string size is valid
         {
             double sqrt = Math.Sqrt(str.Length);
             if (str.Length == 0){
